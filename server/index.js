@@ -34,6 +34,7 @@ app.use(express.urlencoded({extended: true}))
 
 //Routes
 app.use(require('./routes/blog'))
+app.use(require('./routes/comment'))
 
 //Public
 // const history = require('connect-history-api-fallback')

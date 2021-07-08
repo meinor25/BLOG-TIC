@@ -1,11 +1,11 @@
 <template>
-    <div class="posts pt-15" data-aos="flip-right" id="posts">
-        <h3 class="text-center text-xl-h2 text-md-h3 font-weight-light"> 
+    <div class="posts pt-15"  id="posts">
+        <h3 class="text-center text-h5 text-xl-h2 text-md-h3 font-weight-light" data-aos="flip-right" data-aos-delay="200"> 
             <span class="green--text delete-bar">/</span>
             ARTICULOS
         </h3>
         <!-- IF THERE ARE NOT ARTICLES -->
-        <h2 v-if="posts.length == 0" class="text-h2 pt-15 text-center">
+        <h2 v-if="posts.length == 0" class="text-h5 text-md-h3 text-xl-h2 pt-15 px-10 text-center" data-aos="flip-right" data-aos-delay="200" >
             No hay articulos en este momento 
             <v-icon 
                 class="no-articles"
