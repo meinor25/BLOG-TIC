@@ -11,6 +11,7 @@ import "aos/dist/aos.css"
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
+Vue.use(require('vue-moment'));
 
 
 //Set a default axios url

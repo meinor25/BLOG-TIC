@@ -25,12 +25,17 @@
                             contain
                             :src="post.img"
                         />
-                        <h3>
-                            {{post.title}}
-                        </h3>
-                        <p>
-                            {{post.content}}
-                        </p>
+                        <div class="pa-5    ">
+                            <h3 class="text-h6">
+                                {{post.title}}
+                            </h3>
+                            <p class="text-subtitle-1 font-weight-light">
+                                {{post.content}}
+                            </p>
+                            <span class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</span>
+                            <v-btn text class="mt-2">Leer articulo</v-btn> 
+                        </div>
+                        
                     </v-card>
                 </v-col>
             </v-row>
@@ -38,6 +43,9 @@
         <v-container class="d-flex justify-center">
             <v-btn
                 :disabled="posts.length >= 6"
+                color="green"
+                outlined
+                tile
             >
                 CREA UN ARTICULO
             </v-btn>
