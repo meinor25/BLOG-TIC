@@ -44,8 +44,8 @@ app.use(require('./routes/blog'))
 app.use(require('./routes/comment'))
 
 //Public
-const history = require('connect-history-api-fallback')
-app.use(history)
+// const history = require('connect-history-api-fallback')
+// app.use(history)
 app.use( express.static(path.join(__dirname, 'public')))
 
 
