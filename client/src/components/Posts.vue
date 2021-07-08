@@ -69,6 +69,7 @@ export default {
             this.axios.get('blog')
                 .then(
                     (res)=>{
+                        console.log(res.data)
                         const {docs} = res.data.items
                         this.posts = docs
                     }
