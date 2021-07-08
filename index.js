@@ -33,7 +33,7 @@ mongoose.connect(
     }
 )
 //Settings
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT|| 3001);
 app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
@@ -47,7 +47,6 @@ app.use(require('./routes/comment'))
 const history = require('connect-history-api-fallback')
 app.use(history)
 app.use( express.static(path.join(__dirname, 'public')))
-
 
 
 
