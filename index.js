@@ -12,10 +12,10 @@ const app = express();
 //DB connect
 
 //Local uri
-// const DB_URI = "mongodb://localhost:27017/blog-tic"
+const DB_URI = "mongodb://localhost:27017/blog-tic"
 
 //cloud uri
-const DB_URI = "mongodb+srv://blogTIC_user:eJOx1uXuUspfh8Qc@ticblog.0ncyx.mongodb.net/blog-tic?retryWrites=true&w=majority"
+// const DB_URI = "mongodb+srv://blogTIC_user:eJOx1uXuUspfh8Qc@ticblog.0ncyx.mongodb.net/blog-tic?retryWrites=true&w=majority"
 
 mongoose.connect(
     DB_URI,
@@ -44,8 +44,8 @@ app.use(require('./routes/blog'))
 app.use(require('./routes/comment'))
 
 //Public
-// const history = require('connect-history-api-fallback')
-// app.use(history)
+const history = require('connect-history-api-fallback')
+app.use(history)
 app.use( express.static(path.join(__dirname, 'public')))
 
 
