@@ -10,7 +10,13 @@ const app = express();
 
 
 //DB connect
-const DB_URI = "mongodb://localhost:27017/blog-tic"
+
+//Local uri
+// const DB_URI = "mongodb://localhost:27017/blog-tic"
+
+//cloud uri
+const DB_URI = "mongodb+srv://blogTIC_user:eJOx1uXuUspfh8Qc@ticblog.0ncyx.mongodb.net/blog-tic?retryWrites=true&w=majority"
+
 mongoose.connect(
     DB_URI,
     {
@@ -19,6 +25,7 @@ mongoose.connect(
     },
     (err) =>{
         if(err){
+            console.log(err)
             console.log('ERROR DE CONEXION')
         }else{
             console.log('CONEXION CORRECTA')
