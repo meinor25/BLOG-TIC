@@ -15,6 +15,33 @@
                 mdi-emoticon-sad-outline
             </v-icon>
         </h2>
+
+        <!-- POSTS -->
+        <v-container data-aos="flip-left">
+            <v-row>
+                <v-col cols='12' md='4' v-for="post in posts" :key="post._id" >
+                    <v-card>
+                        <v-img
+                            contain
+                            :src="post.img"
+                        />
+                        <h3>
+                            {{post.title}}
+                        </h3>
+                        <p>
+                            {{post.content}}
+                        </p>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+        <v-container class="d-flex justify-center">
+            <v-btn
+                :disabled="posts.length >= 6"
+            >
+                CREA UN ARTICULO
+            </v-btn>
+        </v-container>
     </div>
 </template>
 
@@ -25,13 +52,28 @@ export default {
         return{
             posts: []
         }
+    },
+    created(){
+        this.getPosts()
+    },
+    methods: {
+        getPosts(){
+            this.axios.get('blog')
+                .then(
+                    (res)=>{
+                        const {docs} = res.data.items
+                        this.posts = docs
+                    }
+                )
+        }
     }
 }
 </script>
 
 <style>
     .posts{
-        height: 100vh;
+        height: 100%;
+        padding-bottom: 10rem;
     }
     .delete-bar{
         animation: blink 0.7s  infinite;

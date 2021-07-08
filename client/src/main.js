@@ -10,11 +10,11 @@ import "aos/dist/aos.css"
 
 
 Vue.config.productionTip = false
-Vue.use(axios, VueAxios)
+Vue.use(VueAxios, axios)
 
 
 //Set a default axios url
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = 'http://localhost:3001'
 new Vue({
   created(){
     AOS.init()
