@@ -35,7 +35,9 @@
                                 {{post.descripcion}}
                             </p>
                             <p class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</p>
-                            <v-btn text class="mt-">Leer articulo</v-btn> 
+                            <router-link :to="`/post/${post._id}`">
+                                <v-btn text class="mt-5">Leer articulo</v-btn>    
+                            </router-link>
                         </div>
                         
                     </v-card>
@@ -62,7 +64,7 @@ export default {
     name: 'Posts',
     data(){
         return{
-            posts: []
+            posts: [],
         }
     },
     created(){
@@ -72,13 +74,11 @@ export default {
         getPosts(){
             this.axios.get('blog')
                 .then(
-                    (res)=>{
-                        console.log(res.data)
-                        const {docs} = res.data.items
-                        this.posts = docs
+                    (res)=>{    
+                        this.posts = res.data.docs
                     }
                 )
-        }
+        },
     }
 }
 </script>

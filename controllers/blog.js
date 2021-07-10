@@ -2,14 +2,11 @@ const model= require('../models/blog')
 const mongoose = require('mongoose')
 const parseId  = mongoose.Types.ObjectId
 //Obtener data del API
-const options = {
-    page: 1,
-    limite: 10
-}
+
 exports.getData = (req, res)=>{
-    model.paginate({},options,(err, docs) =>{
+    model.find({},(err, docs) =>{
         res.send({
-            items: docs
+             docs
         })
     })
 }

@@ -33,7 +33,6 @@ mongoose.connect(
     }
 )
 //Settings
-app.set('port', process.env.PORT|| 3001);
 app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
@@ -44,13 +43,13 @@ app.use(require('./routes/blog'))
 app.use(require('./routes/comment'))
 
 //Public
-// const history = require('connect-history-api-fallback')
-// app.use(history)
-app.use( express.static(path.join(__dirname, 'public')))
-
+const history = require('connect-history-api-fallback');
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Port
+app.set('port', process.env.PORT|| 3001);
 app.listen(app.get('port'), ()=>{
     console.log(`Listening at http://localhost:${app.get('port')}`)
 })
