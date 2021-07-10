@@ -1,4 +1,6 @@
 const model= require('../models/blog')
+const mongoose = require('mongoose')
+const parseId  = mongoose.Types.ObjectId
 //Obtener data del API
 const options = {
     page: 1,
@@ -23,5 +25,18 @@ exports.postData = (req, res) =>{
             })
         }
         
+    })
+}
+
+exports.getDataByID = (req, res) =>{
+    const id = req.params.id
+    model.findById({_id : parseId(id)}, (err, docs)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send({
+                data : docs
+            })
+        }
     })
 }

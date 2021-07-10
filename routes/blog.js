@@ -14,4 +14,8 @@ router.post(
     `/${path}`,
     controller.postData
 )
+router.get(
+    `/${path}/:id`,
+    controller.getDataByID
+)
 module.exports = router

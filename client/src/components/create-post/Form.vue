@@ -3,11 +3,12 @@
         <v-form
            class=" d-flex flex-column justify-center"
            :class="$vuetify.breakpoint.mdAndUp ? 'px-15' : 'px-5'"
-        >
+            @submit.prevent="publishPost(posts)"
+        >   
         <v-row>
             <v-col cols="12" md="6">
                 <v-text-field
-                    v-model="title"
+                    v-model="posts.title"
                     width="20rem"
                     filled
                     rounded
@@ -17,7 +18,7 @@
             </v-col>
             <v-col cols="12" md="6">
                 <v-text-field
-                    v-model="title"
+                    v-model="posts.descripcion"
                     width="20rem"
                     filled
                     rounded
@@ -25,6 +26,17 @@
                 >
                 </v-text-field>
             </v-col>
+            <v-col cols="12">
+                <v-text-field
+                    v-model="posts.img"
+                    width="20rem"
+                    filled
+                    rounded
+                    label="URL de la imagen"
+                >
+                </v-text-field>
+            </v-col>
+            
         
         </v-row>
             <h3 
@@ -40,16 +52,16 @@
                     <vue-editor 
                         class="editor" 
                         :editor-toolbar="customToolbar" 
-                        v-model="content"
+                        v-model="posts.content"
                         id="editor"
                     >
                     </vue-editor>
                 </v-container>
                  <v-btn 
-                    @click="push"
                     outlined
                     rounded
                     color="green"
+                    type="submit"
                 >
                     post
                 </v-btn>
@@ -65,19 +77,31 @@ export default {
     data(){
         return{
             //inputs
-            title: '',
-            description: '',
-            content: '',
+
             //vue2editor config
             customToolbar: [
                 [ {header : [false, 1, 2, 3, 4, 5, 6, ]},"bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }]
             ],
+            posts: {
+                title: '', 
+                descripcion: '',
+                content: '',
+                img: ''
+            }
         }
     },
     methods: {
-        push(){
-            this.posts.push(this.post)
+        publishPost(post){
+            this.axios.post('blog', post)
+                .then(res =>{
+                    this.$router.push('/')
+                    console.log(res.data)
+                })
+                .catch(e =>{
+                    console.log(e.response.data)
+                })
+            
         }
     }
 }

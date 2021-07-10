@@ -32,7 +32,7 @@
                                 {{post.title}}
                             </h3>
                             <p class="text-subtitle-1 font-weight-light">
-                                {{post.content}}
+                                {{post.descripcion}}
                             </p>
                             <p class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</p>
                             <v-btn text class="mt-">Leer articulo</v-btn> 
