@@ -17,12 +17,14 @@
         </h2>
 
         <!-- POSTS -->
-        <v-container data-aos="flip-left">
+        <v-container data-aos="flip-left" class="mt-15">
             <v-row>
                 <v-col cols='12' md='4' v-for="post in posts" :key="post._id" >
                     <v-card>
                         <v-img
-                            contain
+                            height="20rem"
+                            
+                            cover
                             :src="post.img"
                         />
                         <div class="pa-5    ">
@@ -32,8 +34,8 @@
                             <p class="text-subtitle-1 font-weight-light">
                                 {{post.content}}
                             </p>
-                            <span class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</span>
-                            <v-btn text class="mt-2">Leer articulo</v-btn> 
+                            <p class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</p>
+                            <v-btn text class="mt-">Leer articulo</v-btn> 
                         </div>
                         
                     </v-card>
@@ -41,14 +43,16 @@
             </v-row>
         </v-container>
         <v-container class="d-flex justify-center">
-            <v-btn
-                :disabled="posts.length >= 6"
-                color="green"
-                outlined
-                tile
-            >
-                CREA UN ARTICULO
-            </v-btn>
+            <router-link to="/create-post">
+                <v-btn
+                    :disabled="posts.length >= 6"
+                    color="green"
+                    outlined
+                    tile
+                >
+                    CREA UN ARTICULO
+                </v-btn>
+            </router-link>
         </v-container>
     </div>
 </template>

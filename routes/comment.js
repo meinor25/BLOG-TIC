@@ -4,20 +4,20 @@ const router = express.Router()
 
 const controller = require('../controllers/comment')
 
-const path = 'blog/comment'
+const path = 'blog'
 
 router.get(
-    `/${path}`,
+    `/${path}/:post_id/comment`,
     controller.getData
 )
 
 router.post(
-    `/${path}`,
+    `/${path}/:post_id/comment`,
     controller.postData
 )
 
 router.put(
-    `/${path}/:id`,
+    `/${path}/:id/comment`,
     controller.editData
 )
 

@@ -15,8 +15,13 @@ exports.getData = (req, res)=>{
 exports.postData = (req, res) =>{
     const data = req.body
     model.create(data, (err, docs)=>{
-        res.send({
-            data: docs
-        })
+        if(err){
+            console.log(err)
+        }else{
+            res.send({
+                data: docs
+            })
+        }
+        
     })
 }

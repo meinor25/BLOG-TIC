@@ -6,7 +6,8 @@ const parseId = (id)=>{
 }
 //GET DATA
 exports.getData = (req, res)=>{
-    model.find({}, (err, docs)=>{
+    const id = req.params.post_id
+    model.find({id}, (err, docs)=>{
         res.send({
             docs
         })
@@ -14,12 +15,18 @@ exports.getData = (req, res)=>{
 }
 //POST DATA
 exports.postData = (req, res)=>{
+    const post_id = req.params.post_id
     const data = req.body
-    model.create(data, (err, docs)=>{
-        res.send({
-            data :docs
-        })
+    model.create({post_id}, data, (err, docs)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send({
+                data : docs
+            })
+        }
     })
+    
 }
 //UPDATE DATA 
 exports.editData = (req, res)=>{

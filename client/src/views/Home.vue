@@ -1,5 +1,6 @@
 <template>
    <div class="Home">
+      <Navbar color="transparent" textColor="white--text" btnColor="white"/>
       <Cta/>
       <About/>
       <Posts />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+  import Navbar from '../components/Navbar'
   import Cta from '../components/Cta'
   import Posts from '../components/Posts'
   import About from '../components/About'
@@ -15,6 +17,6 @@
 
   export default {
     name: 'Home',
-    components: {Cta, Posts, About, Footer},
+    components: {Cta, Posts, About, Footer, Navbar},
   }
 </script>

@@ -1,23 +1,24 @@
 const mongoose = require('mongoose')
 const paginate = require('mongoose-paginate-v2')
 
+
 const blogScheme = new mongoose.Schema(
     {
-        title: {
+        title:{
             type: String,
             required : true,
-            unique: true
+            unique : true
         },
         content: {
             type: String,
-            required: true
+            required: true,
+        },
+        img : {
+            type: String
         },
         date: {
             type: Date,
             default: Date.now()
-        },
-        img: {
-            type: String
         }
     },
     {
