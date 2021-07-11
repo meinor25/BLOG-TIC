@@ -7,9 +7,10 @@
        >
            <v-img 
                 :src="posts.img"
-                height="35rem"
+                :height="$vuetify.breakpoint.smAndUp ? '35rem': '15rem'"
+                
            />
-           <span class="text-h6 font-italic">Created at: {{posts.date | moment("dddd, MMMM Do YYYY")  }}</span>
+           <span class="text-subtitle1 font-italic">Created at: {{posts.date | moment("dddd, MMMM Do YYYY")  }}</span>
            <h2 
                 class="text-h5 text-md-h2 font-weight-medium mt-5 mb-5"
             >

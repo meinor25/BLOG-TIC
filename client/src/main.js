@@ -17,7 +17,7 @@ Vue.use(require('vue-moment'));
 
 
 //Set a default axios url
-axios.defaults.baseURL = 'https://blog-tic.herokuapp.com'
+axios.defaults.baseURL = 'http://localhost:3001'
 new Vue({
  
   created(){
