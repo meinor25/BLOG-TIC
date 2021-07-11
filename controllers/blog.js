@@ -16,6 +16,9 @@ exports.postData = (req, res) =>{
     model.create(data, (err, docs)=>{
         if(err){
             console.log(err)
+            res.send({
+                err
+            })
         }else{
             res.send({
                 data: docs

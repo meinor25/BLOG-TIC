@@ -45,7 +45,7 @@
             </v-row>
         </v-container>
         <v-container class="d-flex justify-center">
-            <router-link to="/create-post">
+            <router-link to="/create-post" v-if="posts.length < 6">
                 <v-btn
                     :disabled="posts.length >= 6"
                     color="green"
@@ -74,9 +74,9 @@ export default {
         getPosts(){
             this.axios.get('blog')
                 .then(
-                    (res)=>{    
+                    (res)=>{   
                         this.posts = res.data.docs
-                    }
+                    } 
                 )
         },
     }

@@ -6,7 +6,7 @@ const blogScheme = new mongoose.Schema(
         title:{
             type: String,
             required : true,
-            unique : true
+            unique : [true, 'Ya existe un articulo con este nombre']
         },
         content: {
             type: String,

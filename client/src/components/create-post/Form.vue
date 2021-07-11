@@ -1,6 +1,8 @@
 <template>
     <div class="form container">
         <v-form
+            ref="form"
+            v-model="valid"
            class=" d-flex flex-column justify-center"
            :class="$vuetify.breakpoint.mdAndUp ? 'px-15' : 'px-5'"
             @submit.prevent="publishPost(posts)"
@@ -13,6 +15,8 @@
                     filled
                     rounded
                     label="Titulo"
+                    required
+                    :rules="[v => v.length > 0 || 'Campo obligatorio']"
                 >
                 </v-text-field>
             </v-col>
@@ -23,6 +27,8 @@
                     filled
                     rounded
                     label="Descripcion"
+                    requiered
+                    :rules="[v => v.length > 0 || 'Campo obligatorio']"
                 >
                 </v-text-field>
             </v-col>
@@ -33,6 +39,9 @@
                     filled
                     rounded
                     label="URL de la imagen"
+                    requiered
+                    :rules="[v => v.length > 0 || 'Campo obligatorio']"
+
                 >
                 </v-text-field>
             </v-col>
@@ -54,6 +63,7 @@
                         :editor-toolbar="customToolbar" 
                         v-model="posts.content"
                         id="editor"
+                        requiered
                     >
                     </vue-editor>
                 </v-container>
@@ -62,9 +72,12 @@
                     rounded
                     color="green"
                     type="submit"
+                    :disabled="!valid"
                 >
                     post
                 </v-btn>
+                <p class="text-center text-h6 font-italic mt-5 ">El titulo es unico, si ya existe un articulo con el titulo escogido, no se publicara el articulo</p>
+                <p class="text-center text-h6 font-italic ">El contenido es requerido, si no existe contenido, no se publicara el articulo</p>
             </div>
         </v-form>
     </div>
@@ -76,8 +89,10 @@ export default {
   
     data(){
         return{
-            //inputs
-
+            //Form
+            valid: false,
+            error: false,
+            errorText: '',
             //vue2editor config
             customToolbar: [
                 [ {header : [false, 1, 2, 3, 4, 5, 6, ]},"bold", "italic", "underline"],
@@ -87,7 +102,9 @@ export default {
                 title: '', 
                 descripcion: '',
                 content: '',
-                img: ''
+                img: '',
+                posts: []
+
             }
         }
     },
@@ -95,14 +112,13 @@ export default {
         publishPost(post){
             this.axios.post('blog', post)
                 .then(res =>{
-                    this.$router.push('/')
                     console.log(res.data)
+                    if(this.error == false){
+                        this.$router.push('/')
+                    }
+
                 })
-                .catch(e =>{
-                    console.log(e.response.data)
-                })
-            
-        }
+        },
     }
 }
 </script>
