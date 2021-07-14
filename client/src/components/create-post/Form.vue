@@ -113,7 +113,6 @@ export default {
                 [{ list: "ordered" }, { list: "bullet" }],
                 [{ 'font': [] }],
                 [{ 'color': [] }, { 'background': [] }],
-                ['video'],
                 [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}]
             ],
             posts: {
