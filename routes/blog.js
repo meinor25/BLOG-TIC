@@ -18,4 +18,17 @@ router.get(
     `/${path}/:id`,
     controller.getDataByID
 )
+router.post(
+    `/${path}/:id/comments`,
+    controller.postComment
+)
+router.get(
+    `/${path}/:id/comments`,
+    controller.getComment
+)
+router.delete(
+    `/${path}/comment/:id`,
+    controller.deleteComment
+)
+
 module.exports = router

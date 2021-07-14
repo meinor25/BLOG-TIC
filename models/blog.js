@@ -8,9 +8,13 @@ const blogScheme = new mongoose.Schema(
             required : true,
             unique : [true, 'Ya existe un articulo con este nombre']
         },
+        user: {
+            type: String,
+            required: true
+        },
         content: {
             type: String,
-            required: true,
+            // required: true,
         },
         img : {
             type: String

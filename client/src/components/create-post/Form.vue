@@ -32,7 +32,7 @@
                 >
                 </v-text-field>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12" md ="6">
                 <v-text-field
                     v-model="posts.img"
                     width="20rem"
@@ -42,6 +42,18 @@
                     requiered
                     :rules="[v => v.length > 0 || 'Campo obligatorio']"
 
+                >
+                </v-text-field>
+            </v-col>
+            <v-col cols="12" md ="6">
+                <v-text-field
+                    v-model="posts.user"
+                    width="20rem"
+                    filled
+                    rounded
+                    label="Autor del Post"
+                    requiered
+                    :rules="[v => v.length > 0 || 'Campo obligatorio']"
                 >
                 </v-text-field>
             </v-col>
@@ -103,7 +115,7 @@ export default {
                 descripcion: '',
                 content: '',
                 img: '',
-                posts: []
+                user: '',
 
             }
         }

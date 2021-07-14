@@ -3,16 +3,20 @@ const mongoose = require('mongoose')
 
 
 const commentSchema = new mongoose.Schema(
-    {
-        post_id:{
+    {   
+        post_id: {
             type: String
         },
         user: {
             type: String,
-            unique: true
+            required: true
         },
         message:{
             type : String,
+        },
+        date: {
+            type : Date,
+            default: Date.now()
         }
     },
     {
@@ -21,4 +25,4 @@ const commentSchema = new mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model('Comment', commentSchema)
+module.exports = mongoose.model('comment', commentSchema)

@@ -7,17 +7,17 @@ const controller = require('../controllers/comment')
 const path = 'blog'
 
 router.get(
-    `/${path}/:post_id/comment`,
+    `/${path}/comment`,
     controller.getData
 )
 
 router.post(
-    `/${path}/:post_id/comment`,
+    `/${path}/comment`,
     controller.postData
 )
 
 router.put(
-    `/${path}/:id/comment`,
+    `/${path}/comment`,
     controller.editData
 )
 

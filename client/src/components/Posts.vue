@@ -22,9 +22,7 @@
                 <v-col cols='12' md='4' v-for="post in posts" :key="post._id" >
                     <v-card>
                         <v-img
-                            height="20rem"
-                            
-                            cover
+                            max-height="20rem"
                             :src="post.img"
                         />
                         <div class="pa-5    ">
@@ -34,8 +32,9 @@
                             <p class="text-subtitle-1 font-weight-light">
                                 {{post.descripcion}}
                             </p>
-                            <p class="font-italic grey--text">Created: {{post.date | moment("dddd, MMMM Do YYYY")  }}</p>
-                            <router-link :to="`/post/${post._id}`">
+                            <p class="font-italic grey--text">Fecha: {{post.date | moment("dddd, MMMM Do YYYY")  }}</p>
+                            <p class="font-italic grey--text">Autor: {{post.user }}</p>
+                            <router-link :to="`/post/${post._id}`" target="_blank">
                                 <v-btn text class="mt-5">Leer articulo</v-btn>    
                             </router-link>
                         </div>
