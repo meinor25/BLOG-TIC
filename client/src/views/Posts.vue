@@ -31,9 +31,30 @@
             <v-container>
                 <h3 class="text-center gray--text" v-if="comments.length == 0">Los comentarios apareceran aqui</h3>
                 <v-card v-for="comment in comments" :key="comment._id" data-aos="" v-else class="mb-5 pa-5 font-weight-light">
-                    <h3>{{comment.user}}</h3>
-                    <p>{{comment.message}}</p>
-                    <p class="text-caption grey--text">{{comments.date | moment("dddd, MMMM Do YYYY")  }}</p>
+                    <v-row>
+                        <v-col cols="10">
+                            <h3 class="text-subtitle-1 text-md-h6">{{comment.user}}</h3>
+                            <p>{{comment.message}}</p>
+                            <p class="text-caption grey--text">{{comment.date | moment("dddd, MMMM Do YYYY")  }}</p>
+                        </v-col>
+                        <v-col cols="2">
+                            <div class="d-flex justify-end">
+                                <v-btn
+                                    icon
+                                    color="red"
+                                    :small="$vuetify.breakpoint.xs"
+                                    @click="deleteComment(comment._id)"
+                                >
+                                    <v-icon>
+                                        mdi-delete
+                                    </v-icon>
+                                </v-btn>
+                            </div>
+ 
+                        </v-col>
+                    </v-row>
+                    
+                    
                 </v-card>
             </v-container>
             <div class="comments "></div>
@@ -52,7 +73,7 @@
                 </v-text-field>
                 <v-textarea
                     label="Mensaje"
-                    :rules ="Rules"
+                    :rules ="textareaRules"
                     v-model="comment.message"
                     no-resize
                     outlined
@@ -64,12 +85,15 @@
                         rounded
                         type="submit"
                         :disabled="!valid"
+                        :counter="150"
                         outlined
                         color="green"
                         class="mt-5"
+                        v-if="comments.length <= 4"
                     >
                         Publicar
                     </v-btn>
+                    <h3 v-else class="text-center">Solo se permiten 4 comentarios por publicacion </h3>
                 </div>
             </v-form>
 
@@ -85,7 +109,11 @@
             return{
                 posts: [],
                 comments: [],
-                Rules : [ v => (v && v.length > 0)|| 'Campo obligatorio'],
+                Rules : [ v => (v && v.length > 0)|| 'Campo obligatorio', v=> (v && v.length <= 20) || "El nombre no puede tener más de 20 caracteres"],
+                textareaRules : [ 
+                    v=> (v && v.length > 0) || 'Campo obligatorio' ,
+                    v=> (v && v.length <= 150) || 'Maximo 150 caracteres'
+                ],
                 valid: false,
                 comment: {
                     user: '',
@@ -124,13 +152,21 @@
                 this.axios.post(`blog/${this.$route.params.id}/comments`, item)
                 .then(
                     (res)=>{
-                        this.comment = res.data.docs
                         this.comments.unshift(res.data.docs)
-                        this.comment= ''
+                        
                     }
                 )
                 
                 
+            },
+            deleteComment(id){
+                this.axios.delete(`blog/comment/${id}`)
+                .then(
+                    (res)=>{
+                        let index = comment => comment._id === res.data.docs._id
+                        this.comments.splice(index, 1)
+                    }
+                )
             }
         }
     }

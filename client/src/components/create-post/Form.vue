@@ -12,7 +12,7 @@
                 <v-text-field
                     v-model="posts.title"
                     width="20rem"
-                    filled
+                    outlined
                     rounded
                     label="Titulo"
                     required
@@ -23,9 +23,9 @@
             <v-col cols="12" md="6">
                 <v-text-field
                     v-model="posts.descripcion"
-                    width="20rem"
-                    filled
+                    
                     rounded
+                    outlined
                     label="Descripcion"
                     requiered
                     :rules="[v => v.length > 0 || 'Campo obligatorio']"
@@ -36,7 +36,8 @@
                 <v-text-field
                     v-model="posts.img"
                     width="20rem"
-                    filled
+                    
+                    outlined
                     rounded
                     label="URL de la imagen"
                     requiered
@@ -49,7 +50,8 @@
                 <v-text-field
                     v-model="posts.user"
                     width="20rem"
-                    filled
+                    
+                    outlined
                     rounded
                     label="Autor del Post"
                     requiered
@@ -108,7 +110,11 @@ export default {
             //vue2editor config
             customToolbar: [
                 [ {header : [false, 1, 2, 3, 4, 5, 6, ]},"bold", "italic", "underline"],
-                [{ list: "ordered" }, { list: "bullet" }]
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ 'font': [] }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['video'],
+                [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}]
             ],
             posts: {
                 title: '', 
